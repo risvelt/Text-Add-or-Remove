@@ -1,3 +1,12 @@
+def remove_lines_from_bottom(file_path, num_lines):
+    with open(file_path, 'r') as file:
+        lines = file.readlines()
+
+    lines = lines[:-num_lines]
+
+    with open(file_path, 'w') as file:
+        file.writelines(lines)
+
 def count_duplicate_sentences(file_path):
     with open(file_path, 'r') as file:
         lines = file.readlines()
@@ -24,7 +33,7 @@ def remove_lines(file_path, num_lines):
     with open(file_path, 'r') as file:
         lines = file.readlines()
 
-    lines = lines[num_lines:]
+    lines = lines[:-num_lines]
 
     with open(file_path, 'w') as file:
         file.writelines(lines)
@@ -63,10 +72,10 @@ def main():
     while True:
         # Menu
         print("\nMenu:")
-        print("1. Tambahkan kata ke setiap baris")
+        print("1. Tambahkan Kata ke setiap baris")
         print("2. Hapus Kata")
-        print("3. Hapus baris")
-        print("4. Check kalimat yang sama di antara baris")
+        print("3. Hapus baris dari bawah")
+        print("4. Check kata yang sama di antara baris")
         print("5. Keluar")
         choice = input("Pilih menu (1/2/3/4/5): ")
 
@@ -79,9 +88,9 @@ def main():
             remove_socks5_prefix(file_path)
             print("Kalimat yang Anda pilih telah dihapus dari file.")
         elif choice == "3":
-            num_lines = int(input("Masukkan jumlah baris yang ingin dihapus: "))
-            remove_lines(file_path, num_lines)
-            print(f"{num_lines} baris telah dihapus dari file.")
+            num_lines = int(input("Masukkan jumlah baris yang ingin dihapus dari bawah: "))
+            remove_lines_from_bottom(file_path, num_lines)
+            print(f"{num_lines} baris telah dihapus dari bawah file.")
         elif choice == "4":
             count_duplicate_sentences(file_path)
         elif choice == "5":
