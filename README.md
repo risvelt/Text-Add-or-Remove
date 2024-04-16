@@ -1,4 +1,4 @@
-program designed to edit .txt files by removing and adding text. It offers a streamlined approach for modifying text content within .txt files, enhancing efficiency in text editing tasks.
+## Program designed to edit .txt files by removing and adding text. It offers a streamlined approach for modifying text content within .txt files, enhancing efficiency in text editing tasks.
 
 # Python Installation Guide
 
