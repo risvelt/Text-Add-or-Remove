@@ -11,7 +11,7 @@ def count_duplicate_sentences(file_path):
     with open(file_path, 'r') as file:
         lines = file.readlines()
 
-    # Menghitung kemunculan setiap kalimat
+    # Counting occurrences of each sentence
     sentence_count = {}
     for index, line in enumerate(lines, start=1):
         sentence = line.strip()
@@ -20,14 +20,14 @@ def count_duplicate_sentences(file_path):
         else:
             sentence_count[sentence] = [index]
 
-    # Mencetak hasil
-    print("\nKalimat yang sama di antara baris:")
+    # Printing the result
+    print("\nDuplicate sentences between lines:")
     for sentence, indexes in sentence_count.items():
         if len(indexes) > 1:
-            print(f"Kalimat '{sentence}' muncul pada baris {', '.join(map(str, indexes))}")
+            print(f"Sentence '{sentence}' appears on lines {', '.join(map(str, indexes))}")
 
     if all(len(indexes) == 1 for indexes in sentence_count.values()):
-        print("Tidak ada kalimat yang sama di antara baris.")
+        print("There are no duplicate sentences between lines.")
 
 def remove_lines(file_path, num_lines):
     with open(file_path, 'r') as file:
@@ -45,16 +45,16 @@ def remove_socks5_prefix(file_path):
     with open(file_path, 'r') as file:
         lines = file.readlines()
 
-    sentence_to_remove = input("Masukkan kalimat yang ingin Anda hapus: ")
+    sentence_to_remove = input("Enter the sentence you want to remove: ")
     lines = remove_specific_sentence(lines, sentence_to_remove)
 
     with open(file_path, 'w') as file:
         file.writelines(lines)
 
 def add_sentence_to_lines(lines, sentence, position):
-    if position == "awal":
+    if position == "start":
         return [sentence.strip() + line for line in lines]
-    elif position == "akhir":
+    elif position == "end":
         return [line.strip() + sentence + "\n" for line in lines]
 
 def add_sentence_to_file(file_path, sentence, position):
@@ -67,37 +67,37 @@ def add_sentence_to_file(file_path, sentence, position):
         file.writelines(lines)
 
 def main():
-    file_path = "proxy_list.txt"  # Ganti dengan path file teks Anda
+    file_path = "proxy_list.txt"  # Replace with your text file path
 
     while True:
         # Menu
         print("\nMenu:")
-        print("1. Tambahkan Kata ke setiap baris")
-        print("2. Hapus Kata")
-        print("3. Hapus baris dari bawah")
-        print("4. Check kata yang sama di antara baris")
-        print("5. Keluar")
-        choice = input("Pilih menu (1/2/3/4/5): ")
+        print("1. Add Word to Each Line")
+        print("2. Delete Word")
+        print("3. Delete Lines from Bottom")
+        print("4. Check Same Words Between Lines")
+        print("5. Exit")
+        choice = input("Choose an option (1/2/3/4/5): ")
 
         if choice == "1":
-            sentence = input("Masukkan kalimat yang ingin Anda tambahkan: ")
-            position = input("Pilih posisi untuk menambahkan kalimat (awal/akhir): ")
+            sentence = input("Enter the sentence you want to add: ")
+            position = input("Choose position to add the sentence (start/end): ")
             add_sentence_to_file(file_path, sentence, position)
-            print(f"Kalimat '{sentence}' telah ditambahkan ke file pada posisi {position}.")
+            print(f"Sentence '{sentence}' has been added to the file at position {position}.")
         elif choice == "2":
             remove_socks5_prefix(file_path)
-            print("Kalimat yang Anda pilih telah dihapus dari file.")
+            print("The selected sentence has been removed from the file.")
         elif choice == "3":
-            num_lines = int(input("Masukkan jumlah baris yang ingin dihapus dari bawah: "))
+            num_lines = int(input("Enter the number of lines you want to delete from the bottom: "))
             remove_lines_from_bottom(file_path, num_lines)
-            print(f"{num_lines} baris telah dihapus dari bawah file.")
+            print(f"{num_lines} lines have been deleted from the bottom of the file.")
         elif choice == "4":
             count_duplicate_sentences(file_path)
         elif choice == "5":
-            print("Terima kasih!")
+            print("Thank you!")
             break
         else:
-            print("Pilihan tidak valid.")
+            print("Invalid choice.")
 
 if __name__ == "__main__":
     main()
