@@ -38,3 +38,13 @@
      sudo apt install python3-pip
      ```
    - Verify with `pip3 --version`.
+
+5. **Run Program
+   - Open a terminal or command prompt.
+   - Navigate to the directory where your Python script is located.
+   - Run the script by executing the following command:
+   
+     ```
+     python txt_modifier.py
+
+     ```
