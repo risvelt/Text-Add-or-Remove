@@ -45,6 +45,6 @@
    - Run the script by executing the following command:
    
      ```
-     python txt_modifier.py
+     python main.py
 
      ```
